@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mark Attendance</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  {% extends 'base.html' %}
+{% block content %}
+  <div class="container">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash-messages">
+          <ul>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    {% endwith %}
+    <h2>Mark Attendance via Webcam</h2>
+    <form method="POST" enctype="multipart/form-data" id="attendance-form">
+      <canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
+      <video id="video" width="320" height="240" autoplay></video>      
+      <input type="hidden" name="image_data" id="image_data">
+    </form>
+    <a href="/" class="btn back">Back</a>
+    
+    <script>
+      const video = document.getElementById('video');
+      const canvas = document.getElementById('canvas');
+      const context = canvas.getContext('2d');
+    
+      navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+        video.srcObject = stream;
+    
+        setInterval(() => {
+          context.drawImage(video, 0, 0, canvas.width, canvas.height);
+          const imageData = canvas.toDataURL('image/png');
+          document.getElementById('image_data').value = imageData;
+          document.getElementById('attendance-form').submit();
+        }, 5000);
+      });
+    </script>
+    {% endblock %}
+</body>
+</html>

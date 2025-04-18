@@ -1,0 +1,64 @@
+<!-- templates/login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #121212;
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card {
+      background-color: #0e0c0c;
+      border-radius: 1rem;
+      padding: 2rem;
+      width: 350px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="card col-md-4">
+    <h3 class="text-center mb-4" style="color: white;">Faculty Login</h3>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="alert alert-danger">
+          {{ messages[0] }}
+        </div>
+      {% endif %}
+    {% endwith %}
+    <form method="POST" action="/login">
+      <div class="mb-3">
+        <label for="username" class="form-label " style="color: white;  margin-left : 36px">Username</label>
+        <center>
+        <input type="text" class="form-control" id="username" name="username" required style="width: 70%;">
+        </center>
+
+      </div>
+
+      <div class="mb-3">
+        
+        <label for="password" class="form-label"style="color: white; margin-left : 36px">Password</label>
+        <center>
+        <input type="password" class="form-control" id="password" name="password" required style="width: 70%;" ></center>
+      </div>
+      <center>
+      <button type="submit" class="btn btn-primary" style="width: 70%;">Login</button>
+    </center>
+    </form>
+
+    <hr>
+    <center>
+    <a href="/student-dashboard" class="btn btn-outline-light  mt-2" style="width: 70%;">View as Student</a>
+</center>
+</div>
+
+</body>
+</html>
