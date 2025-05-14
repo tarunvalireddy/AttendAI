@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register Student</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  {% extends 'base.html' %}
+{% block content %}
+<div class="container">
+  <h2>Register Candidate (Multi-Angle)</h2>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class="flash-messages">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  <form method="POST" enctype="multipart/form-data">
+    <label for="name">Full Name:</label>
+    <input type="text" name="name" required>
+
+    <label for="images">Upload Multiple Face Images:</label>
+    <input type="file" name="images" accept="image/*" multiple required>
+
+    <button type="submit" class="btn">Register</button>
+  </form>
+  <a href="/" class="btn back">Back to Home</a>
+</div>
+{% endblock %}
+
+</body>
+</html>

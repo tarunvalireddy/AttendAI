@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center text-white mb-4">Student Attendance View</h2>
+  <div class="table-responsive">
+    <table class="table table-dark table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Date</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in attendance %}
+          <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="text-center mt-4">
+    <a href="/" class="btn btn-outline-light">Back to Home</a>
+  </div>
+</div>
+{% endblock %}

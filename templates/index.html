@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Face Attendance System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  {% extends 'base.html' %}
+{% block content %}
+  <div class="container">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      
+      {% endif %}
+    {% endwith %}
+    <h1 style="margin-bottom: 25px;">Welcome to the Attendance App</h1>
+    <a href="/register" class="btn">Register Student</a>
+    <a href="/attendance" class="btn">Mark Attendance</a>
+    <a href="/dashboard" class="btn">Admin Dashboard</a>
+  </div>
+  {% endblock %}
+</body>
+</html>

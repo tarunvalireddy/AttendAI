@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: face-attendance-app
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn app:app
+    plan: free
+    branch: main
+    autoDeploy: true

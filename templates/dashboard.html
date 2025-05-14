@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <h1>Attendance Dashboard</h1>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if attendance %}
+                        {% for record in attendance %}
+                            <tr>
+                                <td>{{ record['Name'] }}</td>
+                                <td>{{ record['Date'] }}</td>
+                                <td>{{ record['Time'] }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="3">No attendance records available.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>  
+        </div>
+    </div>
+    {% endblock %}
+
+</body>
+</html>
